@@ -14,6 +14,9 @@ export default {
       if(confirm('Are you sure?')){
         this.tasks = this.tasks.filter(task => task.id !== id)
       }
+    },
+    toggleTask(id) {
+      this.tasks = this.tasks.map(task => task.id === id ? { ...task, reminder: !task.reminder} : {...task})
     }
   },
   created() {
@@ -44,7 +47,7 @@ export default {
 <template>
   <div class="container">
     <Header  title="Task Tracker" />
-    <Tasks @delete-task-go="deleteTask" :tasks="tasks" />
+    <Tasks @toggle-task-go="toggleTask" @delete-task-go="deleteTask" :tasks="tasks" />
   </div>
 </template>
 
