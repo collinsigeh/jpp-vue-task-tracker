@@ -1,14 +1,20 @@
-<template>
-    <header>
-        <h1>Task Tracker</h1>
-    </header>
-</template>
-
 <script>
     export default {
-        name: 'Header'
+        name: 'Header',
+        props: {
+            title: {
+                type: String,
+                default: 'Collins Igeh App'
+            }
+        }
     }
 </script>
+
+<template>
+    <header>
+        <h1>{{ title }}</h1>
+    </header>
+</template>
 
 <style scoped>
     header {
