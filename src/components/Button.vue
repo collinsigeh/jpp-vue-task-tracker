@@ -9,10 +9,15 @@
             color: {
                 type: String
             }
+        },
+        methods: {
+            onClick() {
+                console.log('Clicked')
+            }
         }
     }
 </script>
 
 <template>
-    <button class="btn" :style="{ backgroundColor: color }">{{ text }}</button>
+    <button class="btn" :style="{ backgroundColor: color }" @click="onClick">{{ text }}</button>
 </template>
