@@ -9,6 +9,11 @@ export default {
       tasks: []
     }
   },
+  methods: {
+    deleteTask(id) {
+      this.tasks = this.tasks.filter(task => task.id !== id)
+    }
+  },
   created() {
     this.tasks = [
       {
@@ -37,7 +42,7 @@ export default {
 <template>
   <div class="container">
     <Header  title="Task Tracker" />
-    <Tasks :tasks="tasks" />
+    <Tasks @delete-task-go="deleteTask" :tasks="tasks" />
   </div>
 </template>
 

@@ -6,13 +6,14 @@ export default {
     props: {
         tasks: Array
     },
+    emits: [ 'delete-task-go' ],
     components: { Task }
 }
 </script>
 
 <template>
     <div v-for="task in tasks" :key="task.id">
-        <Task :task="task" />
+        <Task @delete-task="$emit('delete-task-go', task.id)" :task="task" />
     </div>
 </template>
 

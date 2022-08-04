@@ -3,13 +3,18 @@
         name: 'Task',
         props: {
             task: Object
+        },
+        methods: {
+            deleteTask(id) {
+                this.$emit('delete-task', id)
+            }
         }
     }
 </script>
 
 <template>
     <div :class="[task.reminder ? 'reminder' : '', 'task']">
-        <h1>{{ task.text }} <i class="fas fa-times-circle"></i></h1>
+        <h1>{{ task.text }} <i @click="deleteTask(task.id)" class="fas fa-times-circle"></i></h1>
         <p>{{ task.day }}</p>
     </div>
 </template>
