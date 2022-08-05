@@ -7,7 +7,8 @@
             title: {
                 type: String,
                 default: 'Collins Igeh App'
-            }
+            },
+            showAddForm: Boolean
         },
         components: {
             Button
@@ -18,7 +19,7 @@
 <template>
     <header>
         <h1>{{ title }}</h1>
-        <Button />
+        <Button @toggle-addform="$emit('toggle-addtask')" :color="showAddForm ? 'red' : 'green'" :text="showAddForm ? 'Close' : 'Add Task'" />
     </header>
 </template>
 

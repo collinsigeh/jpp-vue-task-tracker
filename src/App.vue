@@ -7,20 +7,25 @@ export default {
   components: { Header, Tasks, AddTask },
   data() {
     return {
-      tasks: []
+      tasks: [],
+      showForm: false
     }
   },
   methods: {
     deleteTask(id) {
       if(confirm('Are you sure?')){
-        this.tasks = this.tasks.filter(task => task.id !== id)
+        this.tasks = this.tasks.filter(task => task.id !== id);
       }
     },
     toggleTask(id) {
-      this.tasks = this.tasks.map(task => task.id === id ? { ...task, reminder: !task.reminder} : {...task})
+      this.tasks = this.tasks.map(task => task.id === id ? { ...task, reminder: !task.reminder} : {...task});
     },
     addTask(newTask) {
       this.tasks = [ ...this.tasks, newTask ];
+      this.showForm = false;
+    },
+    toggleAddTask() {
+      this.showForm = !this.showForm;
     }
   },
   created() {
@@ -50,8 +55,8 @@ export default {
 
 <template>
   <div class="container">
-    <Header  title="Task Tracker" />
-    <AddTask @add-task="addTask" />
+    <Header  title="Task Tracker" @toggle-addtask="toggleAddTask" :showAddForm="showForm" />
+    <AddTask v-show="showForm" @add-task="addTask" />
     <Tasks @toggle-task-go="toggleTask" @delete-task-go="deleteTask" :tasks="tasks" />
   </div>
 </template>

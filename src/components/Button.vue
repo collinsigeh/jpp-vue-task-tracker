@@ -9,15 +9,10 @@
             color: {
                 type: String
             }
-        },
-        methods: {
-            onClick() {
-                console.log('Clicked')
-            }
         }
     }
 </script>
 
 <template>
-    <button class="btn" :style="{ backgroundColor: color }" @click="onClick">{{ text }}</button>
+    <button class="btn" :style="{ backgroundColor: color }" @click="$emit('toggle-addform')">{{ text }}</button>
 </template>
