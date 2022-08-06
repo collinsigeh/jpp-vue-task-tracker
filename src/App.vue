@@ -20,8 +20,17 @@ export default {
     toggleTask(id) {
       this.tasks = this.tasks.map(task => task.id === id ? { ...task, reminder: !task.reminder} : {...task});
     },
-    addTask(newTask) {
-      this.tasks = [ ...this.tasks, newTask ];
+    async addTask(newTask) {
+      const res = await fetch('http://localhost:5000/tasks', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(newTask)
+      });
+      const data = await res.json();
+
+      this.tasks = [ ...this.tasks, data ];
       this.showForm = false;
     },
     toggleAddTask() {
@@ -29,7 +38,9 @@ export default {
     },
     async fetchTasks() {
       const res = await fetch('http://localhost:5000/tasks');
+      // console.log(res.status + ': ' + res.statusText);
       const data = await res.json();
+      // console.log(data);
       return data;
     },
     async fetchTask(id) {
