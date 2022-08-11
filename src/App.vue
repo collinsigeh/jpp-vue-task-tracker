@@ -2,9 +2,10 @@
 import Header from "./components/Header.vue";
 import Tasks from "./components/Tasks.vue";
 import AddTask from "./components/AddTask.vue";
+import Footer from "./components/Footer.vue";
 export default {
   name: 'App',
-  components: { Header, Tasks, AddTask },
+  components: { Header, Tasks, AddTask, Footer },
   data() {
     return {
       tasks: [],
@@ -81,6 +82,8 @@ export default {
     <Header  title="Task Tracker" @toggle-addtask="toggleAddTask" :showAddForm="showForm" />
     <AddTask v-show="showForm" @add-task="addTask" />
     <Tasks @toggle-task-go="toggleTask" @delete-task-go="deleteTask" :tasks="tasks" />
+    <router-view></router-view>
+    <Footer />
   </div>
 </template>
 
